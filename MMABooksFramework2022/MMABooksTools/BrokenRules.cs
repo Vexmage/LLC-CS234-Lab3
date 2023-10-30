@@ -63,5 +63,10 @@ namespace MMABooksTools
             for (int i = 0; i < mRules.Count; i++)
                 mRules.RemoveAt(i);
         }
+
+        public void Add(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

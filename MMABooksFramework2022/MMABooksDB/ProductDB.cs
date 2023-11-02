@@ -29,10 +29,16 @@ namespace MMABooksDB
             DBCommand command = new DBCommand();
             command.CommandText = "usp_ProductCreate";
             command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("productCode", props.ProductCode);
-            command.Parameters.AddWithValue("description", props.Description);
-            command.Parameters.AddWithValue("unitPrice", props.UnitPrice);
-            command.Parameters.AddWithValue("onHandQuantity", props.OnHandQuantity);
+            command.Parameters.AddWithValue("productCode_p", props.ProductCode);
+            command.Parameters.AddWithValue("description_p", props.Description);
+            command.Parameters.AddWithValue("unitPrice_p", props.UnitPrice);
+            command.Parameters.AddWithValue("onHandQty_p", props.OnHandQuantity);
+
+
+            // Add the OUT parameter for ProductID
+            DBParameter outParam = new DBParameter("@ProductID", DBDbType.Int32);
+            outParam.Direction = ParameterDirection.Output;
+            command.Parameters.Add(outParam);
 
             try
             {
@@ -40,6 +46,10 @@ namespace MMABooksDB
                 if (rowsAffected == 1)
                 {
                     props.ConcurrencyID = 1;
+
+                    // Retrieve the OUT parameter value after execution
+                    props.ProductID = Convert.ToInt32(command.Parameters["@ProductID"].Value);
+
                     return props;
                 }
                 else
@@ -56,6 +66,7 @@ namespace MMABooksDB
                     mConnection.Close();
             }
         }
+
 
         public bool Delete(IBaseProps p)
         {

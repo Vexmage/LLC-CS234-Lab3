@@ -2,12 +2,16 @@ USE mmabooksframework;
 
 DELIMITER // 
 
+-- Drop and Create for usp_ProductDelete
+DROP PROCEDURE IF EXISTS usp_ProductDelete; 
 CREATE PROCEDURE usp_ProductDelete (in productId_p int, in conCurrId int)
 BEGIN
 	Delete from products where ProductId = productId_p and ConcurrencyID = conCurrId;
 END //
 DELIMITER ; 
 
+-- Drop and Create for usp_ProductCreate
+DROP PROCEDURE IF EXISTS usp_ProductCreate;
 DELIMITER // 
 CREATE PROCEDURE usp_ProductCreate (
     out ProductID int, 
@@ -19,11 +23,13 @@ CREATE PROCEDURE usp_ProductCreate (
 BEGIN
 	Insert into products (ProductCode, Description, UnitPrice, OnHandQuantity, ConcurrencyID)
     Values (productCode_p, description_p, unitPrice_p, onHandQty_p, 1);
-    Select LAST_INSERT_ID() into prodId;
+    Select LAST_INSERT_ID() into ProductID;
     
 END //
 DELIMITER ;
 
+-- Drop and Create for usp_ProductSelect
+DROP PROCEDURE IF EXISTS usp_ProductSelect;
 DELIMITER // 
 CREATE PROCEDURE usp_ProductSelect (in productId_p int)
 BEGIN
@@ -31,6 +37,8 @@ BEGIN
 END //
 DELIMITER ;
 
+-- Drop and Create for usp_ProductSelectAll
+DROP PROCEDURE IF EXISTS usp_ProductSelectAll;
 DELIMITER // 
 CREATE PROCEDURE usp_ProductSelectAll ()
 BEGIN
@@ -38,6 +46,8 @@ BEGIN
 END //
 DELIMITER ;
 
+-- Drop and Create for usp_ProductUpdate
+DROP PROCEDURE IF EXISTS usp_ProductUpdate;
 DELIMITER // 
 CREATE PROCEDURE usp_ProductUpdate (
     in productId_p int, 

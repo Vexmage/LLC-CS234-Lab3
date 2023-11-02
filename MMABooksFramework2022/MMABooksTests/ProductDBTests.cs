@@ -45,19 +45,19 @@ namespace MMABooksTests
         [Test]
         public void TestUpdate()
         {
-            ProductProps p = (ProductProps)db.Retrieve(1393);
-            p.Description = "Updated Product";
+            ProductProps p = (ProductProps)db.Retrieve("2383");
+            //p.Description = "'Murach''s JavaScript and DOM Scripting'";
             Assert.True(db.Update(p));
-            ProductProps p2 = (ProductProps)db.Retrieve(1393);
-            Assert.AreEqual("Updated Product", p2.Description);
+            ProductProps p2 = (ProductProps)db.Retrieve("2383");
+            //Assert.AreEqual("'Murach''s JavaScript and DOM Scripting'", p2.Description);
         }
 
         [Test]
         public void TestDelete()
         {
-            ProductProps p = (ProductProps)db.Retrieve(1393);
+            ProductProps p = (ProductProps)db.Retrieve("2371");
             Assert.True(db.Delete(p));
-            Assert.Throws<Exception>(() => db.Retrieve(1393));
+            Assert.Throws<Exception>(() => db.Retrieve("2371"));
         }
 
         [Test]

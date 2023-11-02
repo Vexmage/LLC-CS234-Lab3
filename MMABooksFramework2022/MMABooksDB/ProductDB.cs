@@ -65,10 +65,11 @@ namespace MMABooksDB
             DBCommand command = new DBCommand();
             command.CommandText = "usp_ProductDelete";
             command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.Add("productCode", DBDbType.VarChar);
+            command.Parameters.Add("productId_p", DBDbType.Int32);
             command.Parameters.Add("conCurrId", DBDbType.Int32);
-            command.Parameters["productCode"].Value = props.ProductCode;
+            command.Parameters["productId_p"].Value = props.ProductID;   
             command.Parameters["conCurrId"].Value = props.ConcurrencyID;
+
 
             try
             {
@@ -103,8 +104,9 @@ namespace MMABooksDB
 
             command.CommandText = "usp_ProductSelect";
             command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.Add("productCode", DBDbType.VarChar);
-            command.Parameters["productCode"].Value = key.ToString();
+            command.Parameters.Add("productId_p", DBDbType.Int32);
+            command.Parameters["productId_p"].Value = Convert.ToInt32(key);
+
 
             try
             {

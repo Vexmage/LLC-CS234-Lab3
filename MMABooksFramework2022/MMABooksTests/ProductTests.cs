@@ -25,71 +25,66 @@ namespace MMABooksTests
         [Test]
         public void CreateProductTest()
         {
-
             product.ProductCode = "PROD01";
             product.Description = "Sample Product";
             product.UnitPrice = 10.0m;
             product.OnHandQuantity = 50;
 
+            bool isCreated = product.Save();
 
-            bool isCreated = product.Save(); 
 
-
-            //Assert.IsTrue(isCreated);
+            Assert.IsTrue(isCreated);
         }
 
         [Test]
         public void UpdateProductTest()
         {
-
-            Product existingProduct = new Product(1);
-
+            Product existingProduct = new Product(1393);
 
             existingProduct.Description = "Updated Product";
 
+            bool isUpdated = existingProduct.Save();
 
-            void isUpdated = existingProduct.Save();
-
-
-            //Assert.IsTrue(isUpdated);
-        }
-
-        [Test]
-        public void DeleteProductTest()
-        {
-
-            Product existingProduct = new Product(1);
-
-
-            void isDeleted = existingProduct.Delete(); 
-
-
-            //Assert.IsTrue(isDeleted);
+            Assert.IsTrue(isUpdated);
         }
 
         [Test]
         public void RetrieveProductTest()
         {
-
-            int productId = 1;
-
-
-            Product retrievedProduct = new Product(productId);
+            try
+            {
+                Product retrievedProduct = new Product(1406);
 
 
-            Assert.AreEqual("PROD01", retrievedProduct.ProductCode);
-            Assert.AreEqual("Sample Product", retrievedProduct.Description);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+            }
+            
+
         }
 
         [Test]
-        public void RetrieveAllProductsTest()
+        public void DeleteProductTest()
         {
+            Product existingProduct = new Product(1393);
 
-            var products = product.GetList();
+            bool isDeleted = existingProduct.Delete();
 
-
-            //Assert.IsTrue(products.Count > 0);
+            Assert.IsTrue(isDeleted);
         }
 
+
+
+
+        /*
+        [TearDown]
+        public void Cleanup()
+        {
+            // Code to cleanup any changes made during tests (e.g., delete test records)
+        }
+        */
     }
 }

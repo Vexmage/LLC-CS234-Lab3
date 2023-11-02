@@ -13,17 +13,14 @@ namespace MMABooksProps
     public class CustomerProps : IBaseProps
     {
         #region Auto-implemented Properties
-        public int ID { get; set; } = 0;
         public int CustomerID { get; set; } = 0;  
 
         public string Name { get; set; } = ""; 
 
-        public string Address { get; set; } = "";  
-
-        public string Email { get; set; } = "";  
-        public string City { get; set; }
-        public string State { get; set; }
-        public string ZipCode { get; set; }
+        public string Address { get; set; } = "";
+        public string City { get; set; } = "";
+        public string State { get; set; } = "";
+        public string ZipCode { get; set; } = "";
 
         /// <summary>
         /// ConcurrencyID. Don't manipulate directly.
@@ -34,10 +31,12 @@ namespace MMABooksProps
         public object Clone()
         {
             CustomerProps p = new CustomerProps();
-            p.ID = this.ID;
+            p.CustomerID = this.CustomerID;
             p.Name = this.Name;
             p.Address = this.Address;
-            p.Email = this.Email;
+            p.City = this.City;
+            p.State = this.State;
+            p.ZipCode = this.ZipCode;
             p.ConcurrencyID = this.ConcurrencyID;
             return p;
         }
@@ -52,19 +51,23 @@ namespace MMABooksProps
         public void SetState(string jsonString)
         {
             CustomerProps p = JsonSerializer.Deserialize<CustomerProps>(jsonString);
-            this.ID = p.ID;
+            this.CustomerID = p.CustomerID;
             this.Name = p.Name;
             this.Address = p.Address;
-            this.Email = p.Email;
+            this.City = p.City;
+            this.State = p.State;
+            this.ZipCode = p.ZipCode;
             this.ConcurrencyID = p.ConcurrencyID;
         }
 
         public void SetState(DBDataReader dr)
         {
-            this.ID = (Int32)dr["CustomerID"];
-            this.Name = (string)dr["CustomerName"];
+            this.CustomerID = (Int32)dr["CustomerID"];
+            this.Name = (string)dr["Name"];
             this.Address = (string)dr["Address"];
-            this.Email = (string)dr["Email"];
+            this.City = (string)dr["City"];
+            this.State = (string)dr["State"];
+            this.ZipCode = (string)dr["ZipCode"];
             this.ConcurrencyID = (Int32)dr["ConcurrencyID"];
         }
     }

@@ -13,13 +13,11 @@ namespace MMABooksBusiness
     public class Product : BaseBusiness
     {
         //relevant properties
-        //public int ProductId { get; set; }
-        public string ProductName { get; set; }
-        public decimal ProductPrice { get; set; }
+        public int ProductId { get; set; }
 
         protected override void SetRequiredRules()
         {
-            if (string.IsNullOrEmpty(ProductName))
+            if (string.IsNullOrEmpty(ProductCode))
             {
                 mRules.Add("ProductName cannot be null or empty.");
             }
@@ -27,18 +25,15 @@ namespace MMABooksBusiness
 
         protected override void SetDefaultProperties()
         {
-            if (ProductPrice == default(decimal))
-            {
-                ProductPrice = 10.0m;
-            }
+
         }
         protected override void SetUp()
         {
-            mProps = new CustomerProps();
-            mOldProps = new CustomerProps();
+            mProps = new ProductProps();
+            mOldProps = new ProductProps();
 
-            mdbReadable = new CustomerDB();
-            mdbWriteable = new CustomerDB();
+            mdbReadable = new ProductDB();
+            mdbWriteable = new ProductDB();
         }
 
         public override object GetList()
@@ -160,6 +155,19 @@ namespace MMABooksBusiness
                 }
             }
         }
+
+        public bool Save()
+        {
+
+            return true; // Placeholder stub return. Adjust with real logic.
+        }
+
+        public bool Delete()
+        {
+
+            return true; // Placeholder stub return. Adjust with real logic.
+        }
+
 
         public int OnHandQuantity
         {

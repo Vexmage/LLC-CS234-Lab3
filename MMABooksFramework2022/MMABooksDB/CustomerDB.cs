@@ -78,9 +78,9 @@ namespace MMABooksDB
             DBCommand command = new DBCommand();
             command.CommandText = "usp_CustomerDelete";
             command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.Add("CustomerID", DBDbType.Int32);
+            command.Parameters.Add("p_CustomerID", DBDbType.Int32);
             command.Parameters.Add("conCurrId", DBDbType.Int32);
-            command.Parameters["CustomerID"].Value = props.CustomerID;
+            command.Parameters["p_CustomerID"].Value = props.CustomerID;
             command.Parameters["conCurrId"].Value = props.ConcurrencyID;
 
             try
@@ -117,8 +117,8 @@ namespace MMABooksDB
 
             command.CommandText = "usp_CustomerSelect";
             command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.Add("CustomerID", DBDbType.Int32);
-            command.Parameters["CustomerID"].Value = key;
+            command.Parameters.Add("p_CustomerID", DBDbType.Int32);
+            command.Parameters["p_CustomerID"].Value = key;
 
             try
             {
@@ -191,7 +191,7 @@ namespace MMABooksDB
             DBCommand command = new DBCommand();
             command.CommandText = "usp_CustomerUpdate";
             command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.Add("CustomerID", DBDbType.Int32);
+            command.Parameters.Add("p_CustomerID", DBDbType.Int32);
             command.Parameters.Add("name_p", DBDbType.VarChar);
             command.Parameters.Add("address_p", DBDbType.VarChar);
             command.Parameters.Add("city_p", DBDbType.VarChar);
@@ -199,7 +199,7 @@ namespace MMABooksDB
             command.Parameters.Add("zipcode_p", DBDbType.Int32);
             command.Parameters.Add("conCurrId", DBDbType.Int32);
 
-            command.Parameters["CustomerID"].Value = props.CustomerID;
+            command.Parameters["p_CustomerID"].Value = props.CustomerID;
             command.Parameters["name_p"].Value = props.Name;
             command.Parameters["address_p"].Value = props.Address;
             command.Parameters["city_p"].Value = props.City;

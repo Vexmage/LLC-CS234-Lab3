@@ -64,9 +64,19 @@ namespace MMABooksTools
                 mRules.RemoveAt(i);
         }
 
-        public void Add(string v)
+        public void Add(string fieldName)
         {
-            throw new NotImplementedException();
+            // Check if the rule is already broken.
+            if (!mRules.ContainsKey(fieldName))
+            {
+                mRules.Add(fieldName, true);
+                BrokenRule(fieldName);
+            }
+            else
+            {
+                // TODO
+            }
         }
+
     }
 }

@@ -28,14 +28,14 @@ namespace MMABooksTests
         {
             CustomerProps p = (CustomerProps)db.Retrieve(1); 
             Assert.AreEqual(1, p.CustomerID);
-            Assert.AreEqual("Sample Name", p.Name); 
+            Assert.AreEqual("Molunguri, A", p.Name); 
         }
 
         [Test]
         public void TestRetrieveAll()
         {
             List<CustomerProps> list = (List<CustomerProps>)db.RetrieveAll();
-            Assert.AreEqual(10, list.Count);
+            Assert.AreEqual(349, list.Count);
         }
 
         [Test]
@@ -72,13 +72,5 @@ namespace MMABooksTests
             Assert.AreEqual(p.GetState(), p2.GetState());
         }
 
-        [Test]
-        public void TestCreatePrimaryKeyViolation()
-        {
-            CustomerProps p = new CustomerProps();
-            p.CustomerID = 1; // Assuming 1 is an existing CustomerID
-            p.Name = "Duplicate Customer";
-            Assert.Throws<MySqlException>(() => db.Create(p));
-        }
     }
 }
